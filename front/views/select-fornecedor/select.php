@@ -49,6 +49,7 @@
 						echo '<th class="content-head">Nome</th>';
 						echo '<th class="content-head">CNPJ</th>';
 						echo '<th class="content-head">IE</th>';
+						echo '<th class="content-head">CI</th>';
 						echo '<th class="content-head">Categoria</th>';
 						echo '<th class="content-head">Rua</th>';
 						echo '<th class="content-head">Cidade</th>';

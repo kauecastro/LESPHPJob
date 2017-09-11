@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Fornecedor extends Sql
 {
@@ -8,6 +8,7 @@ class Fornecedor extends Sql
 	private $nomeFornecedor;
 	private $cnpjFornecedor;
 	private $ieFornecedor;
+  private $ciFornecedor;
 	private $categoriaFornecimento;
 	private $ruaFornecedor;
 	private $cidadeFonecedor;
@@ -75,6 +76,16 @@ class Fornecedor extends Sql
         $this->ieFornecedor = $ieFornecedor;
     }
 
+    public function getCiFornecedor()
+    {
+        return $this->ciFornecedor;
+    }
+
+    public function setCiFornecedor($ciFornecedor)
+    {
+        $this->ciFornecedor = $ciFornecedor;
+    }
+
     public function getCategoriaFornecimento()
     {
         return $this->categoriaFornecimento;
@@ -135,8 +146,8 @@ class Fornecedor extends Sql
         $this->numeroFornecedor = $numeroFornecedor;
     }
 
-    public function setData($nomeFornecedor, $cnpjFornecedor, $ieFornecedor, $categoriaFornecimento, $ruaFornecedor, 
-        $cidadeFonecedor, $paisFornecedor, $cepFornecedor, $numeroFornecedor)
+    public function setData($nomeFornecedor, $cnpjFornecedor, $ieFornecedor, $categoriaFornecimento, $ruaFornecedor,
+        $cidadeFonecedor, $paisFornecedor, $cepFornecedor, $numeroFornecedor, $ciFornecedor)
     {
         $this->setNomeFornecedor($nomeFornecedor);
         $this->setCnpjFornecedor($cnpjFornecedor);
@@ -147,13 +158,14 @@ class Fornecedor extends Sql
         $this->setPaisFornecedor($paisFornecedor);
         $this->setCepFornecedor($cepFornecedor);
         $this->setNumeroFornecedor($numeroFornecedor);
+        $this->setCiFornecedor($ciFornecedor);
     }
 
     // CRUD
     public function insert()
     {
         $sql = new Sql();
-        $sql->query('INSERT INTO fornecedor (statusFornecedor, nomeFornecedor, cpnjFornecedor, ieFornecedor, categoriaFornecimento, ruaFornecedor, cidadeFonecedor, paisFornecedor, cepFornecedor, numeroFornecedor) VALUES (:STATUS, :NOME, :CNPJ, :IE, :CATEGORIA, :RUA, :CIDADE, :PAIS, :CEP, :NUMERO)', array(
+        $sql->query('INSERT INTO fornecedor (statusFornecedor, nomeFornecedor, cpnjFornecedor, ieFornecedor, categoriaFornecimento, ruaFornecedor, cidadeFonecedor, paisFornecedor, cepFornecedor, numeroFornecedor, ciFornecedor) VALUES (:STATUS, :NOME, :CNPJ, :IE, :CATEGORIA, :RUA, :CIDADE, :PAIS, :CEP, :NUMERO, :CI)', array(
                 ':STATUS' => $this->getStatusFornecedor(),
                 ':NOME' => $this->getNomeFornecedor(),
                 ':CNPJ' => $this->getCnpjFornecedor(),
@@ -163,18 +175,19 @@ class Fornecedor extends Sql
                 ':CIDADE' => $this->getCidadeFonecedor(),
                 ':PAIS' => $this->getPaisFornecedor(),
                 ':CEP' => $this->getCepFornecedor(),
-                ':NUMERO' => $this->getNumeroFornecedor()
+                ':NUMERO' => $this->getNumeroFornecedor(),
+                ':CI' => $this->getCiFornecedor()
             ));
     }
 
     public function selectFilter($filter)
     {
         $sql = new Sql();
-        $stmt = $sql->query("SELECT idFornecedor, nomeFornecedor, cpnjFornecedor, ieFornecedor, categoriaFornecimento, ruaFornecedor, cidadeFonecedor, paisFornecedor, cepFornecedor, numeroFornecedor, dtcadastro FROM fornecedor WHERE (nomeFornecedor LIKE :NOME OR cidadeFonecedor LIKE :CIDADE OR cpnjFornecedor LIKE :CNPJ OR ieFornecedor LIKE :IE) AND statusFornecedor = 1", array(
+        $stmt = $sql->query("SELECT idFornecedor, nomeFornecedor, cpnjFornecedor, ieFornecedor, ciFornecedor, categoriaFornecimento, ruaFornecedor, cidadeFonecedor, paisFornecedor, cepFornecedor, numeroFornecedor, dtcadastro FROM fornecedor WHERE (nomeFornecedor LIKE :NOME OR cidadeFonecedor LIKE :CIDADE OR cpnjFornecedor LIKE :CNPJ OR ieFornecedor LIKE :IE) AND statusFornecedor = 1", array(
                 ':NOME' => '%' . $this->getFilter() . '%',
                 ':CIDADE' => '%' . $this->getFilter() . '%',
                 ':CNPJ' => $this->getFilter(),
-                ':IE' => $this->getFilter()
+                ':IE' => $this->getFilter(),
             ));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -193,13 +206,14 @@ class Fornecedor extends Sql
     {
         $sql = new Sql();
         $this->setIdFornecedor($id);
-        $stmt = $sql->query("UPDATE fornecedor SET nomeFornecedor = :NOME, cpnjFornecedor = :CNPJ, ieFornecedor = :IE,
+        $stmt = $sql->query("UPDATE fornecedor SET nomeFornecedor = :NOME, cpnjFornecedor = :CNPJ, ieFornecedor = :IE, ciFornecedor = :CI,
             categoriaFornecimento = :CAT, ruaFornecedor = :RUA, cidadeFonecedor = :CIDADE, paisFornecedor = :PAIS,
             cepFornecedor = :CEP, numeroFornecedor = :NUM WHERE idFornecedor = :ID", array(
                 ':ID' => $this->getIdFornecedor(),
                 ':NOME' => $this->getNomeFornecedor(),
                 ':CNPJ' => $this->getCnpjFornecedor(),
                 ':IE' => $this->getIeFornecedor(),
+                ':CI' => $this->getCiFornecedor(),
                 ':CAT' => $this->getCategoriaFornecimento(),
                 ':RUA' => $this->getRuaFornecedor(),
                 ':CIDADE' => $this->getCidadeFonecedor(),

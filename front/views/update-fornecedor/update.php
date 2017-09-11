@@ -23,21 +23,30 @@
 					<input class="form-control" type="text" name="nomeForn" placeholder="Nome do Fornecedor">
 				</div>
 			</div>
-			<div class="form-group row justify-content-sm-center">
-				<div class="col-sm-4">
-					<input class="form-control" type="text" name="cnpjForn" placeholder="CNPJ do Fornecedor">
-				</div>
-				<div class="col-sm-4">
-					<input class="form-control" type="text" name="ieForn" placeholder="IE do Fornecedor">
-				</div>
-			</div>
 			<div class="form-group row justify-content-center">
-				<div class="col-sm-8">
-					<select class="form-control" name="categoria">
+				<div class="col-sm-8" >
+					<select class="form-control" id="selectCategoria" name="categoria" required>
 						<option value="" disabled selected>Categoria</option>
 						<option value="importado">Importado</option>
 						<option value="nacional">Nacional</option>
 					</select>
+				</div>
+			</div>
+
+			<div class="form-group row justify-content-sm-center">
+
+				<div class="col-sm-4">
+					<input class="form-control" id = "cnpjForn" type="text" name="cnpjForn" placeholder="CNPJ do Fornecedor" disabled>
+				</div>
+
+				<div class="col-sm-4">
+					<input class="form-control"  id="ieForn" type="text" name="ieForn" placeholder="IE do Fornecedor" disabled>
+				</div>
+			</div>
+
+			<div class="form-group row justify-content-center">
+				<div class="col-sm-8">
+					<input class="form-control" id="ciForn" type="text" name="ciForn" placeholder="CI do Fornecedor" disabled>
 				</div>
 			</div>
 			<div class="form-group row justify-content-sm-center">

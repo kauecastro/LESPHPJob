@@ -1,3 +1,22 @@
+$( document ).ready(function() {
+
+	$('#selectCategoria').change(function(){
+	var value = $('#selectCategoria').val();
+	if(value == "nacional"){
+		$('#cnpjForn').prop("disabled", false);
+		$('#ieForn').prop("disabled", false);
+		$('#ciForn').prop("disabled", true);
+	}
+	if(value == "importado") {
+		$('#cnpjForn').prop("disabled", true);
+		$('#ieForn').prop("disabled", true);
+		$('#ciForn').prop("disabled", false);
+	}
+
+	});
+// Handler for .ready() called.
+});
+
 $('.add-insert').on('click', function(){
 	swal({
 		title: "Deseja adicionar um fornecedor?",

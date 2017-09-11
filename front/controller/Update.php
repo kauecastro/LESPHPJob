@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	require_once "../../config.php";
 	$conn = new Sql();
@@ -6,8 +6,20 @@
 
 	$idFornecedor = $_POST['id'];
 	$nomeFornecedor = $_POST['nomeForn'];
-	$cnpjFornecedor = $_POST['cnpjForn'];
-	$ieFornecedor = $_POST['ieForn'];
+
+	if (isset($_POST['ieForn']))
+		$ieFornecedor = $_POST['ieForn'];
+	else
+		$ieFornecedor = "";
+	if (isset($_POST['cnpjForn']))
+		$cnpjFornecedor = $_POST['cnpjForn'];
+	else
+		$cnpjFornecedor = "";
+	if (isset($_POST['ciForn']))
+		$ciFornecedor = $_POST['ciForn'];
+	else
+		$ciFornecedor = "";
+
 	$categoriaFornecimento = $_POST['categoria'];
 	$ruaFornecedor = $_POST['ruaForn'];
 	$cidadeFonecedor = $_POST['cidadeForn'];
@@ -16,7 +28,7 @@
 	$numeroFornecedor = $_POST['numeroForn'];
 
 	$crud->setIdFornecedor($idFornecedor);
-	$crud->setData($nomeFornecedor, $cnpjFornecedor, $ieFornecedor, $categoriaFornecimento, $ruaFornecedor, $cidadeFonecedor, $paisFornecedor, $cepFornecedor, $numeroFornecedor);
+	$crud->setData($nomeFornecedor, $cnpjFornecedor, $ieFornecedor, $categoriaFornecimento, $ruaFornecedor, $cidadeFonecedor, $paisFornecedor, $cepFornecedor, $numeroFornecedor, $ciFornecedor);
 
 	echo $idFornecedor.'<br>';
 	echo $nomeFornecedor.'<br>';
@@ -28,6 +40,7 @@
 	echo $paisFornecedor.'<br>';
 	echo $cepFornecedor.'<br>';
 	echo $numeroFornecedor.'<br>';
+	echo $ciFornecedor. '<br>';
 
 	$update = $crud->update($idFornecedor);
 	header('Location:../views/update-fornecedor/update.php');

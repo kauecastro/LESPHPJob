@@ -6,7 +6,7 @@
 
 		public function __construct()
 		{
-			$this->conn = new PDO("mysql:host=localhost;dbname=tb_fornecedores", "root", "Zener47kaue");
+			$this->conn = new PDO("mysql:host=localhost;dbname=tb_fornecedores", "root", "Zener47kaue");;
 		}
 
 		private function setParams($statement, $parameters = array())
